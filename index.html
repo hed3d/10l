@@ -5,46 +5,48 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Сайт 10Л класу</title>
 <style>
+/* --- БАЗА --- */
 body {
   margin: 0;
   font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
-  background: #1e1e1e;
+  background: radial-gradient(circle at top, #1e1e1e, #121212);
   color: #fff;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
   overflow-x: hidden;
+  scroll-behavior: smooth;
 }
 
-/* Шапка */
+/* --- ШАПКА --- */
 header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 16px;
   background: linear-gradient(135deg, #2e3b4e, #252525);
-  border-radius: 0 0 12px 12px;
+  border-radius: 0 0 16px 16px;
   margin-bottom: 20px;
-  box-shadow: 0 0 20px rgba(0, 200, 255, 0.2);
+  box-shadow: 0 0 25px rgba(0, 200, 255, 0.25);
 }
 
 .logo {
-  width: 50px;
-  height: 50px;
+  width: 56px;
+  height: 56px;
   background: linear-gradient(135deg, #b0e6ff, #ffffff);
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: bold;
   color: #00334d;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0, 200, 255, 0.5);
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 200, 255, 0.6);
 }
 
 .brand-text { margin-left: 14px; }
 h1 { margin: 0; font-size: 24px; text-shadow: 0 0 8px rgba(255,255,255,0.3); }
-p.lead { margin: 4px 0 0; color: #a0a0a0; font-size: 14px; }
 
+/* --- КОНТЕЙНЕР --- */
 .container {
   width: 94%;
   max-width: 900px;
@@ -52,14 +54,22 @@ p.lead { margin: 4px 0 0; color: #a0a0a0; font-size: 14px; }
   padding: 20px;
 }
 
+/* --- КАРТКИ --- */
 .card {
   background: rgba(42, 42, 42, 0.9);
-  padding: 16px;
-  border-radius: 12px;
+  padding: 20px;
+  border-radius: 14px;
   margin-bottom: 20px;
+  box-shadow: 0 0 16px rgba(0, 200, 255, 0.1);
+  backdrop-filter: blur(6px);
+  transition: 0.3s ease;
+}
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 24px rgba(124, 200, 255, 0.3);
 }
 
-/* --- Новый стиль таблиц --- */
+/* --- ТАБЛИЦІ --- */
 table {
   width: 100%;
   border-collapse: collapse;
@@ -93,23 +103,17 @@ td {
   transition: background 0.25s ease;
 }
 
-tr:last-child td {
-  border-bottom: none;
-}
+tr:last-child td { border-bottom: none; }
+tr:hover td { background: rgba(176, 230, 255, 0.08); }
 
-tr:hover td {
-  background: rgba(176, 230, 255, 0.08);
-}
-
-/* Активный (поточний) урок */
+/* Поточний урок */
 tr.active-row td {
   background: rgba(124, 200, 255, 0.25) !important;
   box-shadow: inset 0 0 10px rgba(124, 200, 255, 0.4);
   color: #fff;
-  transition: background 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Кнопки */
+/* --- КНОПКИ --- */
 .btn {
   display: inline-block;
   padding: 6px 10px;
@@ -121,29 +125,28 @@ tr.active-row td {
   font-weight: 600;
   transition: 0.25s;
 }
-
 .btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 0 12px rgba(176, 230, 255, 0.5);
 }
-
 .btn.disabled {
   background: linear-gradient(135deg, #555, #333);
   color: #999;
   cursor: not-allowed;
-  box-shadow: none;
 }
 
+/* --- БАНЕР --- */
 #banner {
   padding: 12px;
   background: linear-gradient(90deg, #b0e6ff, #ffffff);
   color: #000;
   font-weight: bold;
   border-radius: 8px;
-  margin-bottom: 12px;
+  margin-bottom: 16px;
   text-align: center;
 }
 
+h2 { margin-top: 0; text-transform: uppercase; color: #b0e6ff; }
 h3 {
   margin-top: 28px;
   color: #7c8dfb;
@@ -151,16 +154,51 @@ h3 {
   text-shadow: 0 0 8px rgba(124,141,251,0.3);
 }
 
-/* Подвал */
+/* --- НОВІ РОЗДІЛИ --- */
+.section {
+  background: rgba(35, 35, 40, 0.95);
+  padding: 20px;
+  border-radius: 14px;
+  margin-bottom: 20px;
+  box-shadow: 0 0 20px rgba(0, 200, 255, 0.1);
+}
+
+.section h2 {
+  color: #b0e6ff;
+  font-size: 1.3rem;
+  margin-bottom: 12px;
+  border-left: 4px solid #7c8dfb;
+  padding-left: 8px;
+}
+
+.section .date {
+  color: #aaa;
+  font-size: 0.9rem;
+  margin-bottom: 8px;
+}
+
+.news-item {
+  background: rgba(50, 50, 60, 0.9);
+  border-radius: 10px;
+  padding: 12px 14px;
+  margin-bottom: 10px;
+  transition: 0.3s;
+}
+.news-item:hover {
+  background: rgba(70, 70, 80, 0.9);
+  transform: translateY(-2px);
+}
+
+/* --- ПІДВАЛ --- */
 footer {
   margin-top: auto;
-  padding: 16px 0;
+  padding: 18px 0;
   color: #a0a0a0;
   text-align: center;
   font-size: 13px;
 }
 
-/* Снежинки */
+/* --- СНІЖИНКИ --- */
 .snowflake {
   position: fixed;
   top: -10px;
@@ -173,20 +211,17 @@ footer {
   animation-name: fall;
   animation-timing-function: linear;
 }
-
 @keyframes fall {
   0% {transform:translateY(0) rotate(0deg);}
   100% {transform:translateY(100vh) rotate(360deg);}
 }
 
-/* Адаптив */
+/* --- АДАПТИВ --- */
 @media(max-width:600px){
   header{flex-direction:column;align-items:center;text-align:center;}
   .brand-text{margin-left:0;margin-top:8px;}
-  table, tr, td, th {
-    display: block;
-    width: 100%;
-  }
+  h1{font-size:20px;}
+  table, tr, td, th {display: block; width: 100%;}
   tr {
     background: rgba(42, 42, 50, 0.9);
     border-radius: 10px;
@@ -269,9 +304,35 @@ footer {
   </div>
 </div>
 
+  <!-- Очне навчання -->
+  <div class="section" id="offline">
+    <h2>Очне навчання</h2>
+    <div class="date">Оновлено: <span id="offline-date">—</span></div>
+    <p>(10.11)  (14.11).</p>
+  </div>
+
+  <!-- Новини -->
+  <div class="section" id="news">
+    <h2>Новини</h2>
+    <div class="date">Оновлено: <span id="news-date">—</span></div>
+
+    <div class="news-item">
+      <strong>📢 наразі новин нема</strong>
+      <p></p>
+    </div>
+
+    <div class="news-item">
+      <strong>🏫 наразі новин нема</strong>
+      <p></p>
+    </div>
+  </div>
+</div>
+
 <footer>
   <p>© 2025 — Автори: asorder & hed3d</p>
-  <p>При користуванні сайтом ви автоматично приймаєте <a href="https://docs.google.com/document/d/e/2PACX-1vR918ebJYoaCuY5v3Mdk3UIzZEXSRgvjz904UNofU8DJA2a4i1MaLTbYdXMvw7JadgMLmZ7ZYghHBvx/pub" target="_blank">лецінзійну згоду</a>.</p>
+  <p>При користуванні сайтом ви автоматично приймаєте 
+    <a href="https://docs.google.com/document/d/e/2PACX-1vR918ebJYoaCuY5v3Mdk3UIzZEXSRgvjz904UNofU8DJA2a4i1MaLTbYdXMvw7JadgMLmZ7ZYghHBvx/pub" target="_blank" style="color:#b0e6ff;">ліцензійну згоду</a>.
+  </p>
 </footer>
 
 <script>
@@ -292,7 +353,6 @@ for(let i=0;i<snowflakeCount;i++){
 function highlightCurrentLesson() {
   const now = new Date();
   const minutesNow = now.getHours()*60 + now.getMinutes();
-
   document.querySelectorAll("table[data-day]").forEach(table=>{
     table.querySelectorAll("tr").forEach(row=>{
       const text = row.cells[0]?.textContent || "";
@@ -309,14 +369,19 @@ function highlightCurrentLesson() {
   });
 }
 
-/* --- Показ сьогоднішнього дня --- */
+/* --- Показ сьогоднішнього дня з урахуванням часу України --- */
 function showLesson(){
   const banner = document.getElementById('banner');
   const dayNames = ['Неділя','Понеділок','Вівторок','Середа','Четвер','П’ятниця','Субота'];
   const dayKeys = ['sunday','monday','tuesday','wednesday','thursday','friday','saturday'];
-  const todayIndex = new Date().getDay();
-  const todayKey = dayKeys[todayIndex];
 
+  // Отримати дату в часовому поясі Києва (UTC+3)
+  const now = new Date();
+  const utc = now.getTime() + now.getTimezoneOffset() * 60000;
+  const kyivTime = new Date(utc + 3 * 3600000); // Додаємо 3 години
+  const todayIndex = kyivTime.getDay();
+
+  const todayKey = dayKeys[todayIndex];
   const allTables = document.querySelectorAll('table[data-day]');
   const allHeaders = document.querySelectorAll('h3[data-day]');
   allTables.forEach(t=>t.style.display='none');
@@ -332,11 +397,18 @@ function showLesson(){
 
   todayTable.style.display='table';
   todayHeader.style.display='block';
+  banner.textContent = `Сьогодні — ${dayNames[todayIndex]}`;
   highlightCurrentLesson();
 }
 
 showLesson();
-setInterval(showLesson, 60000); // оновлення кожну хвилину
+setInterval(showLesson, 60000);
+
+/* --- Автооновлення дат у секціях --- */
+const dateNow = new Date().toLocaleDateString('uk-UA', {day:'2-digit', month:'long', year:'numeric'});
+document.getElementById('offline-date').textContent = dateNow;
+document.getElementById('news-date').textContent = dateNow;
 </script>
+
 </body>
 </html>
