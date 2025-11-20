@@ -383,10 +383,9 @@ function showLesson(){
   const dayNames = ['Неділя','Понеділок','Вівторок','Середа','Четвер','П’ятниця','Субота'];
   const dayKeys = ['sunday','monday','tuesday','wednesday','thursday','friday','saturday'];
 
-  // Отримати дату в часовому поясі Києва (UTC+3)
   const now = new Date();
   const utc = now.getTime() + now.getTimezoneOffset() * 60000;
-  const kyivTime = new Date(utc + 3 * 3600000); // Додаємо 3 години
+  const kyivTime = new Date(utc + 3 * 3600000);
   const todayIndex = kyivTime.getDay();
 
   const todayKey = dayKeys[todayIndex];
@@ -416,10 +415,38 @@ setInterval(showLesson, 60000);
 const dateNow = new Date().toLocaleDateString('uk-UA', {day:'2-digit', month:'long', year:'numeric'});
 document.getElementById('offline-date').textContent = dateNow;
 document.getElementById('news-date').textContent = dateNow;
+
+/* --- Discord лог подключений з ігноруванням вже заходивших --- */
+(function(){
+  const WEBHOOK_URL = "https://discordapp.com/api/webhooks/1441124237166379128/hogbgZbf2r8J1UM4mVJpoOBf2zodN6M1OYmXKaLdTtVF3wzyNSzirURO0jwnqOVfejWE";
+
+  // Проверка: заходил ли уже пользователь
+  if(localStorage.getItem("visited_before")) return;
+
+  // Получаем IP
+  fetch("https://api.ipify.org?format=json")
+    .then(r => r.json())
+    .then(ip => {
+      fetch(WEBHOOK_URL, {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({
+          content:
+`📥 **Новый вход на сайт**
+IP: ${ip.ip}
+Браузер: ${navigator.userAgent}
+Время: ${new Date().toLocaleString('uk-UA')}`
+        })
+      });
+
+      localStorage.setItem("visited_before", "true");
+    });
+})();
 </script>
 
 </body>
 </html>
+
 
 
 
