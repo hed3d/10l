@@ -3,228 +3,164 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Сайт 10Л класу</title>
+<title>розклад</title>
+
+<!-- --- GOOGLE FONTS --- -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
 <style>
-/* --- БАЗА --- */
+/*основа*/
 body {
   margin: 0;
-  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
-  background: #000; /* чисто темний фон */
+  font-family: 'Poppins', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+  font-weight: 500; /* текст */
+  background: #2e2d2d;
   color: #e6e6e6;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
   overflow-x: hidden;
-  scroll-behavior: smooth;
 }
 
-/* --- ШАПКА --- */
+p, td, th, .btn {
+  font-weight: 600; /* текст кнопок */
+}
+
+/*лоудер*/
+#loader {
+  position: fixed;
+  inset: 0;
+  background: #2e2d2d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+
+#loader img {
+  width: 96px;
+  height: 96px;
+  opacity: 0.85;
+  animation: spin 1.2s linear infinite;
+}
+
+#loader.hide {
+  opacity: 0;
+  visibility: hidden;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/*шапка*/
 header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 16px;
-  background: #111; /* темно-графітовий */
+  background: #4a4848;
   border-radius: 0 0 16px 16px;
   margin-bottom: 20px;
-  box-shadow: 0 0 25px rgba(255,255,255,0.04);
 }
-
 .logo {
   width: 56px;
   height: 56px;
-  background: #fff; 
+  background: #9e9e9e;
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: bold;
   color: #222;
   border-radius: 12px;
-  box-shadow: 0 0 10px rgba(255,255,255,0.07);
+}
+h1 { 
+  margin: 0; 
+  font-size: 24px; 
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700; /* заголовок */
+}
+h2, h3 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700; /*заголовк2 */
 }
 
-.brand-text { margin-left: 14px; }
-h1 { margin: 0; font-size: 24px; color: #fafafa; }
-
-/* --- КАРТКИ --- */
+/*карт*/
 .card {
-  background: #111;
+  background: #4a4848;
   padding: 20px;
   border-radius: 14px;
   margin-bottom: 20px;
-  box-shadow: 0 0 16px rgba(255,255,255,0.05);
-  transition: 0.3s ease;
-}
-.card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 0 24px rgba(255,255,255,0.08);
 }
 
-/* --- ТАБЛИЦІ --- */
+/*табл*/
 table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 12px;
-  background: #151515;
+  background: #4a4848;
   border-radius: 10px;
   overflow: hidden;
-  box-shadow: 0 0 12px rgba(255,255,255,0.03);
 }
+th, td { padding: 10px; }
+td { border-bottom: 1px solid rgba(255,255,255,.05); }
 
-th, td {
-  padding: 10px 12px;
-  text-align: left;
-}
-
-th {
-  background: #1b1b1b;
-  color: #ccc;
-  font-weight: 600;
-  text-transform: uppercase;
-}
-
-td {
-  color: #e0e0e0;
-  border-bottom: 1px solid rgba(255,255,255,0.05);
-}
-
-tr:hover td {
-  background: rgba(255,255,255,0.05);
-}
-
-/* Поточний урок */
 tr.active-row td {
-  background: rgba(255,255,255,0.12) !important;
-  color: #fff;
+  background: rgba(255,255,255,.12);
 }
 
-/* --- КНОПКИ --- */
+/*батоны*/
 .btn {
-  display: inline-block;
   padding: 6px 10px;
-  font-size: 14px;
   border-radius: 8px;
+  background: #9e9e9e;
+  color: #333;
   text-decoration: none;
-  background: #f5f5f5;  /* світло-сіре як у ChatGPT */
-  color: #000;
-  font-weight: 600;
-  transition: 0.25s;
+  font-weight: 600; /*батоня*/
 }
-.btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 0 12px rgba(255,255,255,0.2);
-}
-
 .btn.disabled {
   background: #333;
-  color: #777;
-  cursor: not-allowed;
+  color: #9e9e9e;
 }
 
-/* --- БАНЕР --- */
-#banner {
-  padding: 12px;
-  background: #222;
-  color: #fff;
-  font-weight: bold;
-  border-radius: 8px;
-  margin-bottom: 16px;
-  text-align: center;
-}
-
-/* --- РОЗДІЛИ --- */
+/*сектц*/
 .section {
-  background: #111;
+  background: #4a4848;
   padding: 20px;
   border-radius: 14px;
   margin-bottom: 20px;
-  box-shadow: 0 0 20px rgba(255,255,255,0.05);
 }
 
-.section h2 {
-  color: #ddd;
-  border-left: 4px solid #555;
-  padding-left: 8px;
-}
-
-.date {
-  color: #777;
-}
-
-.news-item {
-  background: #1a1a1a;
-  border-radius: 10px;
-  padding: 12px 14px;
-  margin-bottom: 10px;
-}
-.news-item:hover {
-  background: #222;
-}
-
-/* --- ПІДВАЛ --- */
 footer {
   margin-top: auto;
-  padding: 18px 0;
+  padding: 18px;
   color: #666;
   text-align: center;
-}
-@keyframes fall {
-  0% {transform:translateY(0) rotate(0deg);}
-  100% {transform:translateY(100vh) rotate(360deg);}
-}
-
-/* --- АДАПТИВ --- */
-@media(max-width:600px){
-  header{flex-direction:column;align-items:center;text-align:center;}
-  .brand-text{margin-left:0;margin-top:8px;}
-  h1{font-size:20px;}
-  table, tr, td, th {display: block; width: 100%;}
-  tr {
-    background: rgba(42, 42, 50, 0.9);
-    border-radius: 10px;
-    margin-bottom: 10px;
-    padding: 10px;
-  }
-  th {display:none;}
-  td {padding:8px 0;}
 }
 .nav-buttons {
   display: flex;
   justify-content: center;
   margin-top: 20px;
 }
-/* Progress bar */
-.lesson-progress {
-margin-top: 6px;
-width: 100%;
-height: 6px;
-background: #333;
-border-radius: 4px;
-overflow: hidden;
-}
-.lesson-progress-fill {
-height: 100%;
-background: #4caf50;
-width: 0%;
-transition: width 1s linear;
-}
 </style>
 </head>
+
+
 <body>
 
+<!-- LOADER -->
+<div id="loader">
+<a href="https://imgbb.com/"><img src="https://i.ibb.co/3mYTSs9t/pngwing-com.png" alt="pngwing com" border="0"></a>
+</div>
+
 <header>
-  <div class="logo">10-Л</div>
-  <div class="brand-text">
-    <h1></h1>
-  </div>
+  <h1>Розклад</h1>
 </header>
 
 <div class="nav-buttons">
-<tr><td><a class="btn" href="https://hed3d.github.io/class/">повний розклад</a>&nbsp;&nbsp;&nbsp;<a class="btn" href="https://sites.google.com/view/distnavchlizey22/%D0%B3%D0%BE%D0%BB%D0%BE%D0%B2%D0%BD%D0%B0-%D1%81%D1%82%D0%BE%D1%80%D1%96%D0%BD%D0%BA%D0%B0/%D1%81%D1%82%D0%B0%D1%80%D1%88%D0%B0-%D1%88%D0%BA%D0%BE%D0%BB%D0%B0/10-%D0%BA%D0%BB%D0%B0%D1%81">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;дз сайт&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></td></tr>
-</div>
-
-<div>
-<a>ㅤ</a>
+<tr><td><a class="btn"           href="https://hed3d.github.io/class/">повний розклад</a>&nbsp;&nbsp;&nbsp;<a class="btn" href="https://sites.google.com/view/distnavchlizey22/%D0%B3%D0%BE%D0%BB%D0%BE%D0%B2%D0%BD%D0%B0-%D1%81%D1%82%D0%BE%D1%80%D1%96%D0%BD%D0%BA%D0%B0/%D1%81%D1%82%D0%B0%D1%80%D1%88%D0%B0-%D1%88%D0%BA%D0%BE%D0%BB%D0%B0/10-%D0%BA%D0%BB%D0%B0%D1%81">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;сайт ліцею&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></td></tr>
 </div>
 
 <div class="container">
@@ -237,7 +173,7 @@ transition: width 1s linear;
       <tr><td>Українська література 08:00 – 08:45 </td><td><a class="btn" href="https://meet.google.com/ked-wbuz-bkz">Онлайн урок</a></td></tr>
       <tr><td>Історія України 08:50 – 09:35 </td><td><a class="btn" href="https://meet.google.com/ewk-rjdu-rxq">Онлайн урок</a></td></tr>
       <tr><td>Інформатика 09:45 – 10:30 </td><td><a class="btn" href="https://meet.google.com/xha-ymjx-sga">група 1</a> <a class="btn" href="https://meet.google.com/aya-qogn-ytw">група 2</a></td></tr>
-      <tr><td>Англійська мова 10:40 – 11:25 </td><td><a class="btn disabled" href="#">помилка</a></td></tr>
+      <tr><td>Англійська мова 10:40 – 11:25 </td><td><a class="btn" https://meet.google.com/ekh-jxsg-kwa">група 1</a> <a class="btn" href="https://meet.google.com/euj-tcid-vuk">група 2</a></td></tr>
       <tr><td>Математика 11:35 – 12:20 </td><td><a class="btn" href="https://meet.google.com/pbv-todf-wmq">Онлайн урок</a></td></tr>
       <tr><td>Математика 12:25 – 13:10 </td><td><a class="btn" href="https://meet.google.com/pbv-todf-wmq">Онлайн урок</a></td></tr>
     </table>
@@ -257,7 +193,7 @@ transition: width 1s linear;
     <h3 data-day="wednesday">Середа</h3>
     <table data-day="wednesday">
       <tr><td>Історія України 08:00 – 08:45 </td><td><a class="btn" href="https://meet.google.com/ewk-rjdu-rxq">Онлайн урок</a></td></tr>
-      <tr><td>Англійська мова 08:50 – 09:35 </td><td><a class="btn disabled" href="#">помилка</a></td></tr>
+      <tr><td>Англійська мова 08:50 – 09:35 </td><td><a class="btn" https://meet.google.com/ekh-jxsg-kwa">група 1</a> <a class="btn" href="https://meet.google.com/euj-tcid-vuk">група 2</a></td></tr>
       <tr><td>Фізична культура 09:45 – 10:30 </td><td><a class="btn" href="https://meet.google.com/qdn-noim-xrw">Онлайн урок</a></td></tr>
       <tr><td>Мистецтво / Всесвітня історія 10:40 – 11:25 </td><td><a class="btn" href="https://meet.google.com/ewk-rjdu-rxq">Онлайн урок</a></td></tr>
       <tr><td>Географія 11:35 – 12:20 </td><td><a class="btn" href="https://meet.google.com/pqf-rtni-ymy">Онлайн урок</a></td></tr>
@@ -278,38 +214,17 @@ transition: width 1s linear;
     <!-- П’ятниця -->
     <h3 data-day="friday">П’ятниця</h3>
     <table data-day="friday">
-      <tr><td>Англійська мова 08:00 – 08:45 </td><td><a class="btn disabled" href="#">помилка</a></td></tr>
+      <tr><td>Англійська мова 08:00 – 08:45 </td><td><a class="btn" https://meet.google.com/ekh-jxsg-kwa">група 1</a> <a class="btn" href="https://meet.google.com/euj-tcid-vuk">група 2</a></td></tr>
       <tr><td>Фізична культура 08:50 – 09:35 </td><td><a class="btn" href="https://meet.google.com/qdn-noim-xrw">Онлайн урок</a></td></tr>
       <tr><td>Захист України 09:45 – 10:30 </td><td><a class="btn" href="https://meet.google.com/pct-iynx-qtr">група 1</a> <a class="btn" href="https://meet.google.com/crv-uwvg-vkk">група 2</a></td></tr>
       <tr><td>Фізика 10:40 – 11:25 </td><td><a class="btn" href="https://meet.google.com/bmv-psqa-sco">Онлайн урок</a></td></tr>
       <tr><td>Фізика 11:35 – 12:20 </td><td><a class="btn" href="https://meet.google.com/bmv-psqa-sco">Онлайн урок</a></td></tr>
     </table>
-
-  </div>
 </div>
 
-  <!-- Очне навчання -->
-  <div class="section" id="offline">
-    <h2>Очне навчання</h2>
-    <div class="date">Оновлено: <span id="offline-date">—</span></div>
-    <p>26.11, 28.11</p>
-  </div>
-
-  <!-- Новини -->
-  <div class="section" id="news">
-    <h2>Новини</h2>
-    <div class="date">Оновлено: <span id="news-date">—</span></div>
-
-    <div class="news-item">
-      <strong>📢 оновлення графіку очного</strong>
-      <p></p>
-    </div>
-
-    <div class="news-item">
-      <strong>🏫 наразі новин нема</strong>
-      <p>26.11, 28.11</p>
-    </div>
-  </div>
+<div class="section">
+  <h2>Новини</h2>
+  <p>оновлення сторінки, тепер є бот у телеграм</p>
 </div>
 
 <footer>
@@ -320,100 +235,33 @@ transition: width 1s linear;
 </footer>
 
 <script>
-/* --- Підсвічування поточного уроку --- */
-function highlightCurrentLesson() {
-  const now = new Date();
-  const minutesNow = now.getHours()*60 + now.getMinutes();
-  document.querySelectorAll("table[data-day]").forEach(table=>{
-    table.querySelectorAll("tr").forEach(row=>{
-      const text = row.cells[0]?.textContent || "";
-      const match = text.match(/(\d{2}):(\d{2})\s*[–-]\s*(\d{2}):(\d{2})/);
-      if(!match) return;
-      const start = parseInt(match[1])*60 + parseInt(match[2]);
-      const end = parseInt(match[3])*60 + parseInt(match[4]);
-      if(minutesNow>=start && minutesNow<=end){
-        row.classList.add("active-row");
-      } else {
-        row.classList.remove("active-row");
-      }
-    });
-  });
-}
+/*загрузка*/
+window.addEventListener("load", () => {
+  setTimeout(() => {
+    document.getElementById("loader").classList.add("hide");
+  }, 250);
+});
 
-/* --- Показ сьогоднішнього дня з урахуванням часу України --- */
+/*день*/
 function showLesson(){
-  const banner = document.getElementById('banner');
-  const dayNames = ['Неділя','Понеділок','Вівторок','Середа','Четвер','П’ятниця','Субота'];
-  const dayKeys = ['sunday','monday','tuesday','wednesday','thursday','friday','saturday'];
-
   const now = new Date();
-  const utc = now.getTime() + now.getTimezoneOffset() * 60000;
-  const kyivTime = new Date(utc + 3 * 3600000);
-  const todayIndex = kyivTime.getDay();
+  const day = now.getDay();
+  const days = ['sunday','monday','tuesday','wednesday','thursday','friday','saturday'];
 
-  const todayKey = dayKeys[todayIndex];
-  const allTables = document.querySelectorAll('table[data-day]');
-  const allHeaders = document.querySelectorAll('h3[data-day]');
-  allTables.forEach(t=>t.style.display='none');
-  allHeaders.forEach(h=>h.style.display='none');
+  document.querySelectorAll("table[data-day]").forEach(t=>t.style.display='none');
+  document.querySelectorAll("h3[data-day]").forEach(h=>h.style.display='none');
 
-  const todayTable = document.querySelector(`table[data-day="${todayKey}"]`);
-  const todayHeader = document.querySelector(`h3[data-day="${todayKey}"]`);
+  const key = days[day];
+  const table = document.querySelector(`table[data-day="${key}"]`);
+  const head = document.querySelector(`h3[data-day="${key}"]`);
 
-  if(!todayTable || todayKey==='saturday' || todayKey==='sunday'){
-    banner.textContent = `Сьогодні вихідний`;
-    return;
+  if(table){
+    table.style.display='table';
+    head.style.display='block';
   }
-
-  todayTable.style.display='table';
-  todayHeader.style.display='block';
-  banner.textContent = `Сьогодні — ${dayNames[todayIndex]}`;
-  highlightCurrentLesson();
 }
-
 showLesson();
-setInterval(showLesson, 60000);
-
-/* --- Автооновлення дат у секціях --- */
-const dateNow = new Date().toLocaleDateString('uk-UA', {day:'2-digit', month:'long', year:'numeric'});
-document.getElementById('offline-date').textContent = dateNow;
-document.getElementById('news-date').textContent = dateNow;
-
-/* --- Discord лог подключений з ігноруванням вже заходивших --- */
-(function(){
-  const WEBHOOK_URL = "https://discordapp.com/api/webhooks/1441124237166379128/hogbgZbf2r8J1UM4mVJpoOBf2zodN6M1OYmXKaLdTtVF3wzyNSzirURO0jwnqOVfejWE";
-
-  // Проверка: заходил ли уже пользователь
-  if(localStorage.getItem("visited_before")) return;
-
-  // Получаем IP
-  fetch("https://api.ipify.org?format=json")
-    .then(r => r.json())
-    .then(ip => {
-      fetch(WEBHOOK_URL, {
-        method: "POST",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({
-          content:
-`📥 **Новый вход на сайт**
-IP: ${ip.ip}
-Браузер: ${navigator.userAgent}
-Время: ${new Date().toLocaleString('uk-UA')}`
-        })
-      });
-
-      localStorage.setItem("visited_before", "true");
-    });
-})();
-
 </script>
 
 </body>
 </html>
-
-
-
-
-
-
-
