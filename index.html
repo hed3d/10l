@@ -9,11 +9,11 @@
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
-/*основа*/
+/* --- БАЗА --- */
 body {
   margin: 0;
   font-family: 'Poppins', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
-  font-weight: 500; /* текст */
+  font-weight: 500; /* жирнее основной текст */
   background: #2e2d2d;
   color: #e6e6e6;
   display: flex;
@@ -23,10 +23,10 @@ body {
 }
 
 p, td, th, .btn {
-  font-weight: 600; /* текст кнопок */
+  font-weight: 600; /* чуть жирнее для текста и кнопок */
 }
 
-/*лоудер*/
+/* --- LOADER --- */
 #loader {
   position: fixed;
   inset: 0;
@@ -55,7 +55,7 @@ p, td, th, .btn {
   to   { transform: rotate(360deg); }
 }
 
-/*шапка*/
+/* --- ШАПКА --- */
 header {
   display: flex;
   align-items: center;
@@ -80,14 +80,14 @@ h1 {
   margin: 0; 
   font-size: 24px; 
   font-family: 'Montserrat', sans-serif;
-  font-weight: 700; /* заголовок */
+  font-weight: 700; /* жирный заголовок */
 }
 h2, h3 {
   font-family: 'Montserrat', sans-serif;
-  font-weight: 700; /*заголовк2 */
+  font-weight: 700; /* жирные заголовки */
 }
 
-/*карт*/
+/* --- КАРТКИ --- */
 .card {
   background: #4a4848;
   padding: 20px;
@@ -95,7 +95,7 @@ h2, h3 {
   margin-bottom: 20px;
 }
 
-/*табл*/
+/* --- ТАБЛИЦІ --- */
 table {
   width: 100%;
   border-collapse: collapse;
@@ -103,6 +103,7 @@ table {
   background: #4a4848;
   border-radius: 10px;
   overflow: hidden;
+  table-layout: auto;
 }
 th, td { padding: 10px; }
 td { border-bottom: 1px solid rgba(255,255,255,.05); }
@@ -111,21 +112,38 @@ tr.active-row td {
   background: rgba(255,255,255,.12);
 }
 
-/*батоны*/
+/* --- КНОПКИ --- */
+td .btn {
+  display: inline-block;    /* чтобы кнопки могли переноситься */
+  margin: 4px 4px 4px 0;    /* небольшой отступ между кнопками */
+  word-break: break-word;   /* перенос длинных ссылок */
+}
+
 .btn {
   padding: 6px 10px;
   border-radius: 8px;
   background: #9e9e9e;
   color: #333;
   text-decoration: none;
-  font-weight: 600; /*батоня*/
+  font-weight: 600; /* жирнее кнопки */
 }
 .btn.disabled {
   background: #333;
   color: #9e9e9e;
 }
 
-/*сектц*/
+/* --- Адаптивность для мобильных --- */
+@media (max-width: 600px) {
+  td {
+    display: block;         /* каждая ячейка на новой строке */
+  }
+  td .btn {
+    width: 100%;            /* кнопки растягиваются на ширину */
+    text-align: center;     /* центрируем текст */
+  }
+}
+
+/* --- СЕКЦІЇ --- */
 .section {
   background: #4a4848;
   padding: 20px;
